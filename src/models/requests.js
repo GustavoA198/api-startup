@@ -25,6 +25,7 @@ export class RequestsModel {
     const RequestDate = formatDate(new Date())
     const RequestStatus = 'Pending'
     const {
+      BorrowDate,
       StartTime,
       EndTime,
       ClassroomID,
@@ -35,6 +36,7 @@ export class RequestsModel {
     const created = await database.query(
         `INSERT INTO Requests
         (   RequestDate,
+            BorrowDate,
             StartTime,
             EndTime,
             ClassroomID,
@@ -42,8 +44,8 @@ export class RequestsModel {
             RequestStatus,
             UserID,
             ProgramID)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?);`,
-        [RequestDate, StartTime, EndTime, ClassroomID, ActivityDescription, RequestStatus, UserID, ProgramID]
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`,
+        [RequestDate, BorrowDate, StartTime, EndTime, ClassroomID, ActivityDescription, RequestStatus, UserID, ProgramID]
     )
     return created
   }
