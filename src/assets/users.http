@@ -2,7 +2,7 @@
 GET http://localhost:1234/users
 
 ### Seleccionar un usuario
-GET http://localhost:1234/users/11ee51cb-241c-2268-aeea-b48c9daeb3a7
+GET http://localhost:1234/users/49d16070-58de-11ee-900b-9828a617eff8
 
 ### Agregar un usuario
 POST http://localhost:1234/users

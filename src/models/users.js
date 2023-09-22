@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 export class UserModel {
   static async getAll () {
     const users = await database.query(
-      `SELECT BIN_TO_UUID(ID) AS ID, FullName, Email, Username, Password, Phone, Role
+      `SELECT ID AS ID, FullName, Email, Username, Password, Phone, Role
       FROM Users;`
     )
     return users
@@ -12,9 +12,9 @@ export class UserModel {
 
   static async getById (id) {
     const user = await database.query(
-      `SELECT BIN_TO_UUID(ID) AS ID, FullName, Email, Username, Password, Phone, Role
+      `SELECT ID AS ID, FullName, Email, Username, Password, Phone, Role
       FROM Users
-      WHERE ID = UUID_TO_BIN(?);`,
+      WHERE ID = ?;`,
       [id]
     )
     return user
@@ -25,7 +25,7 @@ export class UserModel {
     const [[{ ID }]] = await database.query('SELECT UUID() ID;')
     const result = await database.query(
       `INSERT INTO Users 
-      VALUES (UUID_TO_BIN(?),?,?,?,?,?,?);`,
+      VALUES (?,?,?,?,?,?,?);`,
       [ID, FullName, Email, Username, await bcrypt.hash(Password, 12), Phone, Role])
     return result
   }
@@ -36,7 +36,7 @@ export class UserModel {
     const result = await database.query(
       `UPDATE Users
       SET FullName = ?, Email = ?, Username = ?, Password = ?, Phone = ?, Role = ?
-      WHERE ID = UUID_TO_BIN(?);`,
+      WHERE ID = ?;`,
       [FullName, Email, Username, await bcrypt.hash(Password, 12), Phone, Role, ID]
     )
     return result
@@ -46,7 +46,7 @@ export class UserModel {
     const ID = id
     const result = await database.query(
       `DELETE FROM Users
-      WHERE ID = UUID_TO_BIN(?);`,
+      WHERE ID = ?;`,
       [ID]
     )
     return result
