@@ -9,7 +9,7 @@ USE University;
 
 -- Create the Users table
 CREATE TABLE Users (
-    ID BINARY(16) PRIMARY KEY,
+    ID CHAR(36) PRIMARY KEY,
     FullName VARCHAR(255) NOT NULL,
     Email VARCHAR(255) NOT NULL,
     Username INT UNIQUE NOT NULL,
@@ -65,10 +65,10 @@ CREATE TABLE Requests (
     ClassroomID INT NOT NULL,
     ActivityDescription TEXT NOT NULL,
     RequestStatus ENUM('Pending', 'Approved', 'Closed') NOT NULL,
-    UserID BINARY NOT NULL,
+    UserID CHAR(36) NOT NULL,
     ProgramID INT NOT NULL,
-    ApprovedBy BINARY,
-    ClosedBy BINARY,
+    ApprovedBy CHAR(36),
+    ClosedBy CHAR(36),
     FOREIGN KEY (ClassroomID) REFERENCES Classrooms(ID),
     FOREIGN KEY (UserID) REFERENCES Users(ID),
     FOREIGN KEY (ProgramID) REFERENCES Programs(ID),
