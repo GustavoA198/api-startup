@@ -51,6 +51,7 @@ export class RequestsModel {
   }
 
   static async update (data, id) {
+    const ID = id
     const {
       BorrowDate,
       StartTime,
@@ -85,7 +86,7 @@ export class RequestsModel {
           UserID,
           ProgramID,
           ApprovedBy,
-          ClosedBy, id]
+          ClosedBy, ID]
     )
     return updated
   }

@@ -10,7 +10,7 @@ Content-Type: application/json
 
 {
     "BorrowDate": "2023-09-18 08:00:00",
-    "StartTime": "2023-09-18 08:00:00 ",
+    "StartTime": "2023-09-18 08:00:00",
     "EndTime": "2023-09-18 12:00:00",
     "ClassroomID": 1,
     "ActivityDescription": "Fundamentos de Gestión Tecnológica",
@@ -18,4 +18,20 @@ Content-Type: application/json
     "ProgramID": 3743
 }
 
-### TODO: fix the date issue.
+### update a requests
+PUT http://localhost:1234/requests/1
+Content-Type: application/json
+
+{
+    "BorrowDate": "2023-09-18 08:00:00",
+    "StartTime": "2023-09-18 08:00:00",
+    "EndTime": "2023-09-18 12:00:00",
+    "ClassroomID": 1,
+    "ActivityDescription": "Fundamentos de Gestión Tecnológica",
+    "UserID": "49d16070-58de-11ee-900b-9828a617eff8",
+    "ProgramID": 3743,
+    "RequestStatus": "Approved"
+}
+
+### Eliminar una request
+DELETE http://localhost:1234/requests/1
